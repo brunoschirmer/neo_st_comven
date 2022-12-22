@@ -4,7 +4,6 @@ import numpy as np
 from catboost import CatBoostRegressor
 import requests
 import json
-from dotenv import load_dotenv
 import os
 
 header = st.container()
@@ -73,8 +72,8 @@ ano_modelo_selecionado = st.selectbox('Selecione o ano do modelo', Ano_do_Modelo
 #Chamando na API
 
 
-token = st.secrets.token
-model_hash = st.secrets.model_hash
+token = "19f8d1da9ec3411fa0abb3cbfaf20856"
+model_hash = "M4240cdb228145e8bc5b80da8d2caadd7de93616ea2342349ccf7085c96547bd"
 
 url = "https://neomaril.staging.datarisk.net/api/model/sync/run/test_comven/" + model_hash
 headers = {"Authorization": "Bearer " + token}
@@ -95,15 +94,33 @@ y_pred_M = predictions['mediana']
 y_pred_L = predictions['percentil_10']
 
 
-previsao1 = f' O preço médio estimado é de R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}.'
+#previsao1 = f' O preço médio estimado é de R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}.'
 
-previsao2 = f' O limite superior estimado é de R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}.'
+#previsao2 = f' O limite superior estimado é de R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}.'
 
-previsao3 = f' O limite inferior estimado é de R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}.'
+#previsao3 = f' O limite inferior estimado é de R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}.'
 
 
-st.subheader(previsao1)
+#st.subheader(previsao1)
 
-st.subheader(previsao2)
+#st.subheader(previsao2)
 
-st.subheader(previsao3)
+#st.subheader(previsao3)
+
+
+st.markdown("<h1 style='text-align: center; color: red;'>Preços estimados</h1>", unsafe_allow_html=True)
+
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+   st.header("Inferior")
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}.')
+
+with col2:
+   st.header("Média")
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}.')
+
+with col3:
+   st.header("Superior")
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}.')
