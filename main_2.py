@@ -22,7 +22,7 @@ def charge_model_H():
     return model
 
 catboost_model_H = charge_model_H()
-catboost_model_H = catboost_model_H.load_model('catboost_model_H.pkl')
+#catboost_model_H = catboost_model_H.load_model('catboost_model_H.pkl')
 
 
 @st.experimental_singleton
@@ -32,7 +32,7 @@ def charge_model_M():
     return model
 
 catboost_model_M = charge_model_M()
-catboost_model_M = catboost_model_M.load_model('catboost_model_M.pkl')
+#catboost_model_M = catboost_model_M.load_model('catboost_model_M.pkl')
 
 
 @st.experimental_singleton
@@ -42,7 +42,7 @@ def charge_model_L():
     return model
 
 catboost_model_L = charge_model_L()
-catboost_model_L = catboost_model_L.load_model('catboost_model_L.pkl')
+#catboost_model_L = catboost_model_L.load_model('catboost_model_L.pkl')
 
 #Loading database
 
