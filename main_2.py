@@ -52,10 +52,8 @@ def get_data():
 
 
 df = get_data()
-df.drop(columns=['data_venda','valor_transacao'], inplace=True)
-df.drop_duplicates(inplace=True)
 
-Marca = df['marca'].drop_duplicates()
+Marca = df['marca'].drop_duplicates().sort_values()
 marca_selecionada = st.selectbox('Selecione a marca desejada:', Marca)
 
 
