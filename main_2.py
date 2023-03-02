@@ -10,7 +10,7 @@ header = st.container()
 description = st.container()
 
 with header:
-    st.title('Precificador Comven x Datarisk')
+    st.title('Pointer - Precificador Inteligente')
 
 
 @st.cache(allow_output_mutation=True)
@@ -59,11 +59,11 @@ marca_selecionada = st.selectbox('Selecione a marca desejada:', Marca)
 
 Modelo = df[df['marca'] ==
             marca_selecionada]['modelo'].drop_duplicates().sort_values()
-modelo_selecionado = st.selectbox('Selecione o modelo desejado', Modelo)
+modelo_selecionado = st.selectbox('Selecione o modelo desejado:', Modelo)
 
 Ano_do_Modelo = df[df['modelo'] ==
             modelo_selecionado]['ano_modelo'].sort_values().unique()
-ano_modelo_selecionado = st.selectbox('Selecione o ano do modelo', Ano_do_Modelo.astype(int))
+ano_modelo_selecionado = st.selectbox('Selecione o ano do modelo:', Ano_do_Modelo.astype(int))
 
 
 
@@ -113,12 +113,12 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
    st.header("Inferior")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}.')
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}')
 
 with col2:
    st.header("Média")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}.')
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}')
 
 with col3:
    st.header("Superior")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}.')
+   st.subheader(f'R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}')
