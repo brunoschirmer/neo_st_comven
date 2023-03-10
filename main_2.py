@@ -73,7 +73,7 @@ ano_modelo_selecionado = st.selectbox('Selecione o ano do modelo:', Ano_do_Model
 token = st.secrets["token"]
 model_hash = st.secrets["model_hash"]
 
-url = "https://neomaril.staging.datarisk.net/api/model/sync/run/test_comven/" + model_hash
+url = "https://neomaril.datarisk.net/api/model/sync/run/test_comven/" + model_hash
 headers = {"Authorization": "Bearer " + token}
 payload = {
     "Input": {"marca" : marca_selecionada,
