@@ -87,38 +87,28 @@ response = requests.request("POST", url, json=payload, headers=headers)
 
 predictions = response.json()
 
-y_pred_H = predictions['percentil_90']
-y_pred_M = predictions['mediana']
-y_pred_L = predictions['percentil_10']
+try:
+    y_pred_H = predictions['percentil_90']
+    y_pred_M = predictions['mediana']
+    y_pred_L = predictions['percentil_10']
+
+    st.markdown("<h1 style='text-align: center; color: red;'>Preços estimados</h1>", unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.header("Inferior")
+        st.subheader(f'R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}')
+
+    with col2:
+        st.header("Média")
+        st.subheader(f'R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}')
+
+    with col3:
+        st.header("Superior")
+        st.subheader(f'R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}')
+except KeyError:
+    st.markdown("<h1 style='text-align: center; color: red;'>Veículo não encontrado</h1>", unsafe_allow_html=True)
 
 
-#previsao1 = f' O preço médio estimado é de R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}.'
 
-#previsao2 = f' O limite superior estimado é de R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}.'
-
-#previsao3 = f' O limite inferior estimado é de R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}.'
-
-
-#st.subheader(previsao1)
-
-#st.subheader(previsao2)
-
-#st.subheader(previsao3)
-
-
-st.markdown("<h1 style='text-align: center; color: red;'>Preços estimados</h1>", unsafe_allow_html=True)
-
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-   st.header("Inferior")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_L).replace(",",".")}')
-
-with col2:
-   st.header("Média")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_M).replace(",",".")}')
-
-with col3:
-   st.header("Superior")
-   st.subheader(f'R$ {"{:,.0f}".format(y_pred_H).replace(",",".")}')
